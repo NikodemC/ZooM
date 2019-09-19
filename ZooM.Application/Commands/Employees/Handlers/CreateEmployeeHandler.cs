@@ -28,7 +28,7 @@ namespace ZooM.Application.Commands.Employees.Handlers
                 command.YearOfBirth);
 
             await _repository.AddAsync(newEmployee);
-            //await _broker.PublishAsync(new EmployeeCreated(command.Id));
+            await _broker.PublishAsync(new EmployeeCreated(command.Id));
         }
     }
 }

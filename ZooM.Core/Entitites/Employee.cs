@@ -6,12 +6,14 @@ namespace ZooM.Core.Entitites
 {
     public class Employee
     {
+        public readonly string DefaultAvatar = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png";
+
         public Employee(Guid id, string avatar, string name, Position position, int yearOfBirth)
         {
             Id = id;
-            Avatar = avatar;
             Name = name;
             Position = position;
+            ChangeAvatar(avatar);
             SetYOB(yearOfBirth);
         }
 
@@ -28,7 +30,7 @@ namespace ZooM.Core.Entitites
 
         public void ChangeAvatar(string avatar)
         {
-            Avatar = avatar;
+            Avatar = string.IsNullOrEmpty(avatar) ? DefaultAvatar : avatar;
         }
 
         private void SetYOB(int yearOfBirth)
