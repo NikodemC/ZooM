@@ -24,7 +24,7 @@ namespace ZooM.Application.Commands.Employees.Handlers
             if (employee is null) throw new EmployeeDoesntExistException(command.Id);
 
             await _repository.DeleteAsync(employee);
-            //await _broker.PublishAsync(new EmployeeDeleted(command.Id));
+            await _broker.PublishAsync(new EmployeeDeleted(command.Id));
         }
     }
 }

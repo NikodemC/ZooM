@@ -24,19 +24,14 @@ namespace ZooM.Application.Commands.Employees.Handlers
             {
                 throw new EmployeeDoesntExistException(command.Id);
             }
-
-            if (command.Avatar != null)
-            {
-                employee.ChangeAvatar(command.Avatar);
-            }
-
+            
             if (command.Position != null)
             {
                 employee.ChangePosition(command.Position.Value);
             }
 
             await _repository.UpdateAsync(employee);
-           // await _broker.PublishAsync(new EmployeeUpdated(command.Id));
+            await _broker.PublishAsync(new EmployeeUpdated(command.Id));
         }
     }
 }

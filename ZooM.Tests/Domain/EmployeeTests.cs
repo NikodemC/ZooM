@@ -21,5 +21,16 @@ namespace ZooM.Tests.Domain
             exception.ShouldNotBeNull();
             exception.ShouldBeAssignableTo<DomainException>();
         }
+
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void CreateEmployee_Should_Set_Default_Avatar_If_Given_Avatar_Is_Invalid(string avatar)
+        {
+            var employee = new Employee(Guid.NewGuid(), avatar, "Testowy Testo", Position.Grabarz, 1980);
+
+            employee.Avatar.ShouldBe(employee.DefaultAvatar);
+        }
     }
 }
