@@ -24,13 +24,11 @@ namespace ZooM.Application.Commands.Employees.Handlers
 
             if (employee != null) throw new EmployeeAlreadyExistException(command.Id);
 
-            if (command.YearOfBirth > 2001 || command.YearOfBirth < 1930) throw new WrongDateException(command.YearOfBirth);
-
             var newEmployee = new Employee(command.Id, command.Avatar, command.Name, command.Position,
                 command.YearOfBirth);
 
             await _repository.AddAsync(newEmployee);
-            await _broker.PublishAsync(new EmployeeCreated(command.Id));
+            //await _broker.PublishAsync(new EmployeeCreated(command.Id));
         }
     }
 }

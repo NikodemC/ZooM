@@ -49,13 +49,6 @@ namespace ZooM.Infrastructure.RabbitMq.Subscriber
                 var message = JsonConvert.DeserializeObject<TMessage>(json);
                 await onReceived(_serviceProvider, message);
             };
-            consumer.Received += async (model, ea) =>
-            {
-                var body = ea.Body;
-                var json = Encoding.UTF8.GetString(body);
-                var message = JsonConvert.DeserializeObject<TMessage>(json);
-                await onReceived(_serviceProvider, message);
-            };
             channel.BasicConsume(queue: queueName,
                 autoAck: true,
                 consumer: consumer);

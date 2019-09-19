@@ -36,7 +36,7 @@ namespace ZooM.Application.Commands.Employees.Handlers
             }
 
             await _repository.UpdateAsync(employee);
-            await _broker.PublishAsync(new EmployeeUpdated(command.Id));
+           // await _broker.PublishAsync(new EmployeeUpdated(command.Id));
         }
     }
 }
